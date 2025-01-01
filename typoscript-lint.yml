@@ -1,0 +1,15 @@
+paths:
+  - Configuration/TypoScript
+
+filePatterns:
+  - "*.typoscript"
+  - "*.tsconfig"
+
+sniffs:
+  - class: Indentation
+    parameters:
+      indentConditions: true
+      indentPerLevel: 1
+      useSpaces: false
+  - class: RepeatingRValue
+    disabled: true

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf" date="2025-01-01T00:00:00Z" product-name="autocomplete_for_indexedsearch">
+		<header/>
+		<body>
+			<trans-unit id="constants.templateRootPath">
+				<source>Path to template root (FE)</source>
+			</trans-unit>
+			<trans-unit id="constants.partialRootPath">
+				<source>Path to template partials (FE)</source>
+			</trans-unit>
+			<trans-unit id="constants.layoutRootPath">
+				<source>Path to template layouts (FE)</source>
+			</trans-unit>
+			<trans-unit id="constants.stylesheetFile">
+				<source>Path to stylesheet file</source>
+			</trans-unit>
+			<trans-unit id="constants.javaScriptFile">
+				<source>Path to JavaScript file</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

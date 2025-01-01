@@ -1,0 +1,20 @@
+plugin {
+	tx_autocompleteforindexedsearch {
+		view {
+			# cat=plugin.tx_autocompleteforindexedsearch/file; type=string; label=LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.templateRootPath
+			templateRootPath = EXT:autocomplete_for_indexedsearch/Resources/Private/Templates/
+
+			# cat=plugin.tx_autocompleteforindexedsearch/file; type=string; label=LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.partialRootPath
+			partialRootPath = EXT:autocomplete_for_indexedsearch/Resources/Private/Partials/
+
+			# cat=plugin.tx_autocompleteforindexedsearch/file; type=string; label=LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.layoutRootPath
+			layoutRootPath = EXT:autocomplete_for_indexedsearch/Resources/Private/Layouts/
+		}
+
+		# cat=plugin.tx_autocompleteforindexedsearch/file; type=string; label=LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.stylesheetFile
+		stylesheetFile = EXT:autocomplete_for_indexedsearch/Resources/Public/Css/autocomplete_for_indexedsearch.css
+
+		# cat=plugin.tx_autocompleteforindexedsearch/file; type=string; label=LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.javaScriptFile
+		javaScriptFile = EXT:autocomplete_for_indexedsearch/Resources/Public/JavaScript/autocomplete_for_indexedsearch.js
+	}
+}

@@ -1,0 +1,26 @@
+includes:
+	- ./.Build/vendor/phpstan/phpstan/conf/bleedingEdge.neon
+	- ./.Build/vendor/saschaegerer/phpstan-typo3/extension.neon
+	- ./phpstan-baseline.neon
+
+
+parameters:
+	level: 9
+	paths:
+		- ./
+	excludePaths:
+		- ./.Build/
+
+	# Stricter Analysis
+	polluteScopeWithLoopInitialAssignments: false
+	polluteScopeWithAlwaysIterableForeach: false
+	checkFunctionNameCase: true
+	checkInternalClassCaseSensitivity: true
+	checkAlwaysTrueInstanceof: true
+	checkAlwaysTrueStrictComparison: true
+	checkExplicitMixedMissingReturn: true
+
+	ignoreErrors:
+		-
+			message: '#Variable \$_EXTKEY might not be defined.#'
+			path: */ext_emconf.php

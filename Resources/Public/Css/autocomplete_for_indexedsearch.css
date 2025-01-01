@@ -1,0 +1,23 @@
+.tx-autocomplete-for-indexedsearch {
+	position: relative;
+}
+.tx-autocomplete-for-indexedsearch ul {
+	position: absolute;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	background: #f4f4f4;
+	border: 1px solid #8c8c8c;
+	list-style: none;
+	cursor: pointer;
+	z-index: 1;
+}
+.tx-autocomplete-for-indexedsearch li {
+	padding: 2px 5px;
+}
+.tx-autocomplete-for-indexedsearch li:hover {
+	background-color: #b9b9b9;
+}
+.tx-autocomplete-for-indexedsearch .highlighted {
+	background: #fab85c;
+}

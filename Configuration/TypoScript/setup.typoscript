@@ -1,0 +1,42 @@
+plugin {
+	tx_autocompleteforindexedsearch {
+		view {
+			templateRootPaths {
+				0 = EXT:autocomplete_for_indexedsearch/Resources/Private/Templates/
+				10 = {$plugin.tx_autocompleteforindexedsearch.view.templateRootPath}
+			}
+			partialRootPaths {
+				0 = EXT:autocomplete_for_indexedsearch/Resources/Private/Partials/
+				10 = {$plugin.tx_autocompleteforindexedsearch.view.partialRootPath}
+			}
+			layoutRootPaths {
+				0 = EXT:autocomplete_for_indexedsearch/Resources/Private/Layouts/
+				10 = {$plugin.tx_autocompleteforindexedsearch.view.layoutRootPath}
+			}
+		}
+	}
+}
+
+page {
+	includeCSS {
+		autocompleteForIndexedSearch = {$plugin.tx_autocompleteforindexedsearch.stylesheetFile}
+	}
+	includeJSFooter {
+		autocompleteForIndexedSearch = {$plugin.tx_autocompleteforindexedsearch.javaScriptFile}
+	}
+}
+
+autocomplete = PAGE
+autocomplete {
+	typeNum = 7603976
+	config {
+		disableAllHeaderCode = 1
+		admPanel = 0
+		debug = 0
+	}
+	10 = EXTBASEPLUGIN
+	10 {
+		extensionName = AutocompleteForIndexedsearch
+		pluginName = Autocomplete
+	}
+}
