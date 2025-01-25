@@ -19,7 +19,6 @@
 		// add listeners to search field
 		searchField.addEventListener('input', handleInput);
 		searchField.addEventListener('keydown', handleKeyDown);
-		searchField.addEventListener('blur', handleBlur)
 
 		// handle clicks on suggested items
 		suggestionsContainer.addEventListener('click', function(event) {
@@ -39,6 +38,13 @@
 
 			if (submitOnClick) {
 				searchField.closest('form').submit();
+			}
+		});
+
+		// clear suggestions when something else on the page was clicked
+		document.addEventListener('click', function (e) {
+			if(e.target !== suggestionsContainer) {
+				clearSuggestionsContainer(suggestionsContainer);
 			}
 		});
 	});
@@ -125,19 +131,6 @@
 
 
 	/**
-	 * Handles blurs on search fields
-	 */
-	function handleBlur(event) {
-		// clear suggestions container unless it was specifically focussed
-		if (event.relatedTarget === null || event.relatedTarget.closest(suggestionsContainerSelector) === null) {
-			suggestionsContainers.forEach(function(suggestionsContainer) {
-				clearSuggestionsContainer(suggestionsContainer);
-			});
-		}
-	}
-
-
-	/**
 	 * Performs autocomplete
 	 */
 	async function autocomplete(sword, endpoint, suggestionsContainer) {
@@ -191,5 +184,4 @@
 		suggestionsContainer.innerHTML = '';
 		suggestionsContainer.style.display = 'none';
 	}
-
 })();
