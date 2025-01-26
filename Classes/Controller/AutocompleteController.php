@@ -36,8 +36,7 @@ final class AutocompleteController extends ActionController
 			return $this->htmlResponse();
 		}
 
-		// TODO: make configurable
-		$maxNumResults = 10;
+		$maxNumResults = ctype_digit($this->settings['maxSuggestions']) ? (int)$this->settings['maxSuggestions'] : null;
 
 		// get autocomplete suggestions for input
 		$suggestions = $this->suggestionsService->getSuggestionsFor($input, $maxNumResults);

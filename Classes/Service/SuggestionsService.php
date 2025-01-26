@@ -29,8 +29,11 @@ final class SuggestionsService
 	 * Returns a list of autocomplete suggestions based on the given input
 	 * @return string[]
 	 */
-	public function getSuggestionsFor(string $input, int $maxResults = 10): array
+	public function getSuggestionsFor(string $input, ?int $maxResults = null): array
 	{
+		// default to a maximum of 10 suggestions
+		$maxResults ??= 10;
+
 		$queryBuilder = $this->connectionPool->getQueryBuilderForTable('index_words');
 		$queryBuilder
 			->select('baseword')

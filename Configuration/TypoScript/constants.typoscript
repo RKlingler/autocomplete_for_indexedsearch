@@ -11,6 +11,11 @@ plugin {
 			layoutRootPath = EXT:autocomplete_for_indexedsearch/Resources/Private/Layouts/
 		}
 
+		settings {
+			# cat=plugin.tx_autocompleteforindexedsearch/other; type=int; label=LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.maxSuggestions
+			maxSuggestions = 10
+		}
+
 		# cat=plugin.tx_autocompleteforindexedsearch/file; type=string; label=LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.stylesheetFile
 		stylesheetFile = EXT:autocomplete_for_indexedsearch/Resources/Public/Css/autocomplete_for_indexedsearch.css
 

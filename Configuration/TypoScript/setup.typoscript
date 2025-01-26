@@ -14,6 +14,9 @@ plugin {
 				10 = {$plugin.tx_autocompleteforindexedsearch.view.layoutRootPath}
 			}
 		}
+		settings {
+			maxSuggestions = {$plugin.tx_autocompleteforindexedsearch.settings.maxSuggestions}
+		}
 	}
 }
 

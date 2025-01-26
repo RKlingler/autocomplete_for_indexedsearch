@@ -12,6 +12,9 @@
 			<trans-unit id="constants.layoutRootPath">
 				<source>Path to template layouts (FE)</source>
 			</trans-unit>
+			<trans-unit id="constants.maxSuggestions">
+				<source>Maximum number of autocomplete suggestions</source>
+			</trans-unit>
 			<trans-unit id="constants.stylesheetFile">
 				<source>Path to stylesheet file</source>
 			</trans-unit>
