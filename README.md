@@ -50,7 +50,7 @@ plugin {
 
 ### Place the ViewHelper to render suggestions
 
-Add the ViewHelper `<rkl:autocompleteSuggestions />` to your overridden `Form.html`:
+Add the ViewHelper `<rkl:autocompleteSuggestions />` to your overridden `Form.html`. It renders the container in which suggestions will be displayed.
 ```html
 <html
   xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
@@ -88,6 +88,6 @@ The `autocompleteSuggestions` ViewHelper provides the following attributes to ma
 | minlength     | *int*            | minimum string length of the search term for autocompletion to start             |
 
 
-## Sponsoring
+## Sponsorships
 
 PayPal: [www.paypal.me/rukling](http://paypal.me/rukling)
