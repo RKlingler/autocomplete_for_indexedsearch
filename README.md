@@ -27,14 +27,14 @@ composer require rkl/autocomplete-for-indexedsearch
 
 ## Setup
 
-### Include the static TypoScript of the extension
+### 1. Include the static TypoScript of the extension
 
 1. Go to Site Management -> TypoScript
 2. Open your TypoScript template and click "Edit the whole TypoScript record"
 3. In the tab "Advanced Options", include the TypoScript set: "Autocomplete for Indexed Search (autocomplete_for_indexedsearch)"
 
 
-### Override the `EXT:indexed_search/Resources/Private/Partials/Form.html` template
+### 2. Override the Form.html template from indexed_search
 
 1. Copy the partial from `EXT:indexed_search/Resources/Private/Partials/Form.html` to your own site package, for example to `EXT:my_sitepackage/Resources/Private/IndexedSearch/Partials/Form.html`
 2. Add your partial root path to the plugin configuration of Indexed Search in the TypoScript of your site package:
@@ -48,7 +48,7 @@ plugin {
 }
 ```
 
-### Place the ViewHelper to render suggestions
+### 3. Place the ViewHelper to render suggestions
 
 Add the ViewHelper `<rkl:autocompleteSuggestions />` to your overridden `Form.html`. It renders the container in which suggestions will be displayed.
 ```html
@@ -62,6 +62,15 @@ Add the ViewHelper `<rkl:autocompleteSuggestions />` to your overridden `Form.ht
 ```
 
 *Add the ViewHelper wherever it suits your styling needs the best. Ideally it's placed close to the search field. Also remember to add the namespace `RKL/AutocompleteForIndexedSearch/ViewHelpers` like shown in the example.*
+
+#### ViewHelper attributes
+
+The `autocompleteSuggestions` ViewHelper provides the following attributes to manipulate the behavior of the autocomplete suggestions:
+
+| Attribute     | Allowed values   | Description                                                                      |
+|:--------------|:-----------------|:---------------------------------------------------------------------------------|
+| searchonclick | *bool* (`0`/`1`) | defines whether to instantly submit the search form when a suggestion is clicked |
+| minlength     | *int*            | minimum string length of the search term for autocompletion to start             |
 
 
 ### Optional: Add a Route Enhancer
@@ -78,14 +87,13 @@ routeEnhancers:
 ```
 
 
-## ViewHelper attributes
+## Links
 
-The `autocompleteSuggestions` ViewHelper provides the following attributes to manipulate the behavior of the autocomplete suggestions:
-
-| Attribute     | Allowed values   | Description                                                                      |
-|:--------------|:-----------------|:---------------------------------------------------------------------------------|
-| searchonclick | *bool* (`0`/`1`) | defines whether to instantly submit the search form when a suggestion is clicked |
-| minlength     | *int*            | minimum string length of the search term for autocompletion to start             |
+|                  | URL                                                                   |
+|:-----------------|:----------------------------------------------------------------------|
+| **Repository:**  | https://github.com/RKlingler/autocomplete_for_indexedsearch/          |
+| **TER:**         | https://extensions.typo3.org/extension/autocomplete_for_indexedsearch |
+| **Packagist:**   | https://packagist.org/packages/rkl/autocomplete-for-indexedsearch     |
 
 
 ## Sponsorships
