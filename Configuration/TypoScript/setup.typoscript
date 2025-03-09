@@ -36,6 +36,7 @@ autocomplete {
 		disableAllHeaderCode = 1
 		admPanel = 0
 		debug = 0
+		index_enable = 0
 	}
 	10 = EXTBASEPLUGIN
 	10 {
