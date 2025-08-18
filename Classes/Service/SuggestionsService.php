@@ -63,7 +63,20 @@ final class SuggestionsService
 			// Collecting all pages IDs in which to search
 			// filtering out ALL pages that are not accessible due to restriction containers. Does NOT look for "no_search" field!
 			$pageRepository = GeneralUtility::makeInstance(PageRepository::class);
-			$idList = $pageRepository->getPageIdsRecursive($searchRootPageIdList, 9999);
+
+
+			if ((new \TYPO3\CMS\Core\Information\Typo3Version)->getMajorVersion() >= 12) {
+				$idList = $pageRepository->getPageIdsRecursive($searchRootPageIdList, 9999);
+			} else {
+				$cObj = $this->configurationManager->getContentObject();
+				$idListStr = '';
+				foreach ($searchRootPageIdList as $rootPageId) {
+					$idListStr .= ',' . $cObj->getTreeList('-' . $rootPageId, 9999);
+				}
+				$idList = explode(',', trim($idListStr, ','));
+				$idList = array_map('intval', $idList);
+			}
+
 			$queryBuilder->andWhere(
 				$queryBuilder->expr()->in(
 					'IP.data_page_id',
