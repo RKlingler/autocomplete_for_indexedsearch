@@ -36,13 +36,38 @@ final class AutocompleteController extends ActionController
 			return $this->htmlResponse();
 		}
 
-		$maxNumResults = ctype_digit($this->settings['maxSuggestions']) ? (int)$this->settings['maxSuggestions'] : null;
+		$words = explode(' ', $input);
+		$caretpos = $this->request->hasArgument('caretpos') ? intval($this->request->getArgument('caretpos')) : strlen($input);
+		$wordKey = $this->getCurrentWord($words, $caretpos);
+		if ($words[$wordKey] !== '') {
+			$maxNumResults = ctype_digit($this->settings['maxSuggestions']) ? (int)$this->settings['maxSuggestions'] : null;
 
-		// get autocomplete suggestions for input
-		$suggestions = $this->suggestionsService->getSuggestionsFor($input, $maxNumResults);
+			// get autocomplete suggestions for input
+			$suggestions = $this->suggestionsService->getSuggestionsFor($words[$wordKey], $maxNumResults);
+
+			foreach ($suggestions as $key => $suggestion) {
+				$words[$wordKey] = $suggestion;
+				$suggestions[$key] = implode(' ', $words);
+			}
+		} else {
+			$suggestions = [$input];
+		}
 
 		$this->view->assign('suggestions', $suggestions);
 
 		return $this->htmlResponse();
+	}
+
+	protected function getCurrentWord(array $words, int $caretpos): int
+	{
+		$chars = 0;
+		foreach ($words as $key => $word) {
+			$chars += mb_strlen($word);
+			if ($caretpos <= $chars) {
+				return $key;
+			}
+			$chars++;//space
+		}
+		return array_key_last($words);
 	}
 }
