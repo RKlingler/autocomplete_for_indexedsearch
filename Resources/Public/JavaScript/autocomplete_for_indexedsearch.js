@@ -58,6 +58,7 @@
 		const endpoint = suggestionsContainer.dataset.endpoint;
 		const minlength = typeof suggestionsContainer.dataset.minlength !== 'undefined' ? suggestionsContainer.dataset.minlength : 2;
 		const sword = event.target.value.trim();
+		const caretpos = event.target.selectionStart;
 
 		// check if the entered sword is long enough
 		if (sword.length < minlength) {
@@ -77,7 +78,7 @@
 		clearTimeout(debounceTimeout);
 		debounceTimeout = setTimeout(function() {
 			clearTimeout(debounceTimeout);
-			autocomplete(sword, endpoint, suggestionsContainer);
+			autocomplete(sword, endpoint, suggestionsContainer, caretpos);
 		}, 250);
 	}
 
@@ -133,9 +134,10 @@
 	/**
 	 * Performs autocomplete
 	 */
-	async function autocomplete(sword, endpoint, suggestionsContainer) {
+	async function autocomplete(sword, endpoint, suggestionsContainer, caretpos) {
 		let formData = new FormData();
 		formData.append('tx_autocompleteforindexedsearch_autocomplete[sword]', sword);
+		formData.append('tx_autocompleteforindexedsearch_autocomplete[caretpos]', caretpos);
 
 		const response = await fetch(endpoint, {
 			method: 'POST',
