@@ -87,6 +87,24 @@ routeEnhancers:
 ```
 
 
+### Fulltext search
+
+This extension relies on data in tables `index_rel` and `index_words`.
+These tables are not filled by `indexed_search` when its
+"Use MySQL specific fulltext search" (`basic.useMysqlFulltext`) configuration is enabled.
+
+A workaround is to let `indexed_search` fill those tables even if they are not needed:
+
+1. Declare a dependency of your site extension to `typo3/cms-indexed-search` in
+   its `composer.json` file.
+2. Mark the tables as "in use" in your `ext_localconf.php` file:
+
+```
+//force indexed_search to fill the index_rel and index_words tables despite fulltext
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['indexed_search']['use_tables'] .= ',index_rel,index_words';
+```
+
+
 ## Links
 
 |                  | URL                                                                   |
