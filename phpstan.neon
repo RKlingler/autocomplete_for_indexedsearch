@@ -16,8 +16,6 @@ parameters:
 	polluteScopeWithAlwaysIterableForeach: false
 	checkFunctionNameCase: true
 	checkInternalClassCaseSensitivity: true
-	checkAlwaysTrueInstanceof: true
-	checkAlwaysTrueStrictComparison: true
 	checkExplicitMixedMissingReturn: true
 
 	ignoreErrors:

@@ -13,6 +13,7 @@ namespace RKL\AutocompleteForIndexedSearch\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use RKL\AutocompleteForIndexedSearch\Service\SuggestionsService;
+use RKL\AutocompleteForIndexedSearch\Utility\SearchWordsArrayUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 
 final class AutocompleteController extends ActionController
@@ -36,38 +37,28 @@ final class AutocompleteController extends ActionController
 			return $this->htmlResponse();
 		}
 
+		// get the caret position
+		$caretpos = $this->request->hasArgument('caretpos') ? $this->request->getArgument('caretpos') : 0;
+		$caretpos = is_numeric($caretpos) ? (int) $caretpos : strlen($input);
+
 		$words = explode(' ', $input);
-		$caretpos = $this->request->hasArgument('caretpos') ? intval($this->request->getArgument('caretpos')) : strlen($input);
-		$wordKey = $this->getCurrentWord($words, $caretpos);
+		$wordKey = SearchWordsArrayUtility::getCurrentWordKey($words, $caretpos);
 		if ($words[$wordKey] !== '') {
 			$maxNumResults = ctype_digit($this->settings['maxSuggestions']) ? (int)$this->settings['maxSuggestions'] : null;
 
 			// get autocomplete suggestions for input
 			$suggestions = $this->suggestionsService->getSuggestionsFor($words[$wordKey], $maxNumResults);
 
-			foreach ($suggestions as $key => $suggestion) {
+			foreach ($suggestions as &$suggestion) {
 				$words[$wordKey] = $suggestion;
-				$suggestions[$key] = implode(' ', $words);
+				$suggestion = implode(' ', $words);
 			}
 		} else {
-			$suggestions = [$input];
+			$suggestions = [];
 		}
 
 		$this->view->assign('suggestions', $suggestions);
 
 		return $this->htmlResponse();
-	}
-
-	protected function getCurrentWord(array $words, int $caretpos): int
-	{
-		$chars = 0;
-		foreach ($words as $key => $word) {
-			$chars += mb_strlen($word);
-			if ($caretpos <= $chars) {
-				return $key;
-			}
-			$chars++;//space
-		}
-		return array_key_last($words);
 	}
 }

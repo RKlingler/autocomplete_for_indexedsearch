@@ -1,6 +1,13 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Parameter \\#2 \\$attributeValue of method TYPO3Fluid\\\\Fluid\\\\Core\\\\ViewHelper\\\\TagBuilder\\:\\:addAttribute\\(\\) expects array\\|bool\\|string\\|Traversable\\|UnitEnum\\|null, mixed given\\.$#"
+			message: '#^Cannot access property \$config on mixed\.$#'
+			identifier: property.nonObject
+			count: 1
+			path: Classes/Service/SuggestionsService.php
+
+		-
+			message: '#^Parameter \#2 \$attributeValue of method TYPO3Fluid\\Fluid\\Core\\ViewHelper\\TagBuilder\:\:addAttribute\(\) expects array\|bool\|string\|Traversable\|UnitEnum\|null, mixed given\.$#'
+			identifier: argument.type
 			count: 1
 			path: Classes/ViewHelpers/AutocompleteSuggestionsViewHelper.php
