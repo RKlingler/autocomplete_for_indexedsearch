@@ -88,6 +88,11 @@ routeEnhancers:
 ```
 
 
+## MySQL fulltext search
+
+This extension relies on the index tables created by indexed_search. It does not work if the "Use MySQL specific fulltext search" (`basic.useMysqlFulltext`) configuration is enabled.
+
+
 ## Links
 
 |                  | URL                                                                   |
