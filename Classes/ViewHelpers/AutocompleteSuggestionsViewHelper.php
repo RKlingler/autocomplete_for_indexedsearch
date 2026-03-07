@@ -30,7 +30,6 @@ final class AutocompleteSuggestionsViewHelper extends AbstractTagBasedViewHelper
 	public function initializeArguments(): void
 	{
 		parent::initializeArguments();
-		$this->registerUniversalTagAttributes();
 
 		$this->registerArgument(
 			'searchonclick',
@@ -65,9 +64,9 @@ final class AutocompleteSuggestionsViewHelper extends AbstractTagBasedViewHelper
 				'Autocomplete'
 			);
 
-		$additionalClass = (is_string($this->arguments['class']) ? ' ' . $this->arguments['class'] : '');
+		$classAttribute = $this->tag->getAttribute('class') ?? '';
 
-		$this->tag->addAttribute('class', 'tx-autocomplete-for-indexedsearch' . $additionalClass);
+		$this->tag->addAttribute('class', trim('tx-autocomplete-for-indexedsearch ' . $classAttribute));
 		$this->tag->addAttribute('data-searchonclick', ($this->arguments['searchonclick'] ? 'true' : 'false'));
 		$this->tag->addAttribute('data-minlength', $this->arguments['minlength']);
 		$this->tag->addAttribute('data-endpoint', $endpointUrl);
