@@ -15,16 +15,16 @@
 		"issues": "https://github.com/RKlingler/autocomplete_for_indexedsearch/issues"
 	},
 	"require": {
-		"typo3/cms-core": "^12.4 || ^13.4",
-		"typo3/cms-extbase": "^12.4 || ^13.4",
-		"typo3/cms-fluid": "^12.4 || ^13.4",
-		"typo3/cms-frontend": "^12.4 || ^13.4",
-		"typo3/cms-indexed-search": "^12.4 || ^13.4"
+		"typo3/cms-core": "^12.4 || ^13.4  || ^14.0",
+		"typo3/cms-extbase": "^12.4 || ^13.4  || ^14.0",
+		"typo3/cms-fluid": "^12.4 || ^13.4  || ^14.0",
+		"typo3/cms-frontend": "^12.4 || ^13.4  || ^14.0",
+		"typo3/cms-indexed-search": "^12.4 || ^13.4  || ^14.0"
 	},
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^3.65",
 		"helmich/typo3-typoscript-lint": "^3.2",
-		"saschaegerer/phpstan-typo3": "^2.1",
+		"saschaegerer/phpstan-typo3": "^3.0",
 		"typo3/testing-framework": "^9.3"
 	},
 	"autoload": {

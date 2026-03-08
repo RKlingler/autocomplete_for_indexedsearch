@@ -1,6 +1,7 @@
-[![TYPO3 12](https://img.shields.io/badge/TYPO3-12-orange.svg)](https://get.typo3.org/version/12)
-[![TYPO3 13](https://img.shields.io/badge/TYPO3-13-orange.svg)](https://get.typo3.org/version/13)
-[![TYPO3 13](https://img.shields.io/badge/Donate-PayPal-blue.svg)](http://paypal.me/rukling)
+[![TYPO3 12](https://img.shields.io/badge/TYPO3-12-ff8700.svg?logo=typo3)](https://get.typo3.org/version/12)
+[![TYPO3 13](https://img.shields.io/badge/TYPO3-13-ff8700.svg?logo=typo3)](https://get.typo3.org/version/13)
+[![TYPO3 14](https://img.shields.io/badge/TYPO3-14-ff8700.svg?logo=typo3)](https://get.typo3.org/version/14)
+[![PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](http://paypal.me/rukling)
 
 # TYPO3 Extension: Autocomplete for IndexedSearch
 
@@ -11,7 +12,7 @@ This extension adds autocomplete functionality to TYPO3 indexed search fields.
 
 ## Features
 
-* Supports TYPO3 12 and 13
+* Supports TYPO3 12, 13 and 14
 * No further dependencies
 * Comes with limited styling for easy customizability
 * Handles inputs with multiple words
