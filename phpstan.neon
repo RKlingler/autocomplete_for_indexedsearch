@@ -17,6 +17,7 @@ parameters:
 	checkFunctionNameCase: true
 	checkInternalClassCaseSensitivity: true
 	checkExplicitMixedMissingReturn: true
+	checkMissingOverrideMethodAttribute: true
 
 	ignoreErrors:
 		-

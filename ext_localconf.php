@@ -20,5 +20,6 @@ ExtensionUtility::configurePlugin(
 	],
 	[
 		AutocompleteController::class => 'autocomplete',
-	]
+	],
+	ExtensionUtility::PLUGIN_TYPE_CONTENT_ELEMENT
 );

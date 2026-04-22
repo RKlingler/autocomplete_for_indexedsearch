@@ -27,6 +27,7 @@ final class AutocompleteSuggestionsViewHelper extends AbstractTagBasedViewHelper
 	}
 
 
+	#[\Override]
 	public function initializeArguments(): void
 	{
 		parent::initializeArguments();
@@ -49,6 +50,7 @@ final class AutocompleteSuggestionsViewHelper extends AbstractTagBasedViewHelper
 	}
 
 
+	#[\Override]
 	public function render(): string
 	{
 		// generate endpoint url
@@ -81,12 +83,11 @@ final class AutocompleteSuggestionsViewHelper extends AbstractTagBasedViewHelper
 	 */
 	private function getRequest(): RequestInterface
 	{
-		if (method_exists($this->renderingContext, 'getRequest')) {
-			// TYPO3 v12 compatibility
-			$request = $this->renderingContext->getRequest();
-		} elseif ($this->renderingContext->hasAttribute(ServerRequestInterface::class)) {
-			// TYPO3 v13+ compatibility
+		if ($this->renderingContext->hasAttribute(ServerRequestInterface::class)) {
 			$request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
+		} elseif (method_exists($this->renderingContext, 'getRequest')) {
+			// fallback for TYPO3 v12 backwards compatibility
+			$request = $this->renderingContext->getRequest();
 		} else {
 			throw new \RuntimeException(
 				'The rendering context of this ViewHelper is missing a valid request object, probably because it is used outside of Extbase context.',
