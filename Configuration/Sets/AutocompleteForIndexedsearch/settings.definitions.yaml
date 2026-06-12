@@ -1,0 +1,44 @@
+categories:
+  AutocompleteForIndexedsearch:
+    label: 'Autocomplete for Indexed Search'
+  AutocompleteForIndexedsearch.templates:
+    label: 'Templates'
+    parent: AutocompleteForIndexedsearch
+  AutocompleteForIndexedsearch.settings:
+    label: 'Settings'
+    parent: AutocompleteForIndexedsearch
+  AutocompleteForIndexedsearch.assets:
+    label: 'Assets'
+    parent: AutocompleteForIndexedsearch
+
+settings:
+  plugin.tx_autocompleteforindexedsearch.view.layoutRootPath:
+    label: 'LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.layoutRootPath'
+    category: AutocompleteForIndexedsearch.templates
+    type: string
+    default: 'EXT:autocomplete_for_indexedsearch/Resources/Private/Layouts/'
+  plugin.tx_autocompleteforindexedsearch.view.partialRootPath:
+    label: 'LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.partialRootPath'
+    category: AutocompleteForIndexedsearch.templates
+    type: string
+    default: 'EXT:autocomplete_for_indexedsearch/Resources/Private/Partials/'
+  plugin.tx_autocompleteforindexedsearch.view.templateRootPath:
+    label: 'LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.templateRootPath'
+    category: AutocompleteForIndexedsearch.templates
+    type: string
+    default: 'EXT:autocomplete_for_indexedsearch/Resources/Private/Templates/'
+  plugin.tx_autocompleteforindexedsearch.settings.maxSuggestions:
+    label: 'LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.maxSuggestions'
+    category: AutocompleteForIndexedsearch.settings
+    type: int
+    default: 10
+  plugin.tx_autocompleteforindexedsearch.stylesheetFile:
+    label: 'LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.stylesheetFile'
+    category: AutocompleteForIndexedsearch.assets
+    type: string
+    default: 'EXT:autocomplete_for_indexedsearch/Resources/Public/Css/autocomplete_for_indexedsearch.css'
+  plugin.tx_autocompleteforindexedsearch.javaScriptFile:
+    label: 'LLL:EXT:autocomplete_for_indexedsearch/Resources/Private/Language/locallang_be.xlf:constants.javaScriptFile'
+    category: AutocompleteForIndexedsearch.assets
+    type: string
+    default: 'EXT:autocomplete_for_indexedsearch/Resources/Public/JavaScript/autocomplete_for_indexedsearch.js'

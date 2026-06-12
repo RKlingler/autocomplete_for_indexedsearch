@@ -1,0 +1,4 @@
+name: rkl/autocomplete-for-indexedsearch
+label: Autocomplete for Indexed Search
+dependencies:
+  - typo3/indexed-search
