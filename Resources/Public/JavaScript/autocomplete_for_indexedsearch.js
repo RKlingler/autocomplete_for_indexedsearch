@@ -57,6 +57,7 @@
 		const suggestionsContainer = getSuggestionsContainerForSearchField(event.target);
 		const endpoint = suggestionsContainer.dataset.endpoint;
 		const minlength = typeof suggestionsContainer.dataset.minlength !== 'undefined' ? suggestionsContainer.dataset.minlength : 2;
+		const listboxid = typeof suggestionsContainer.dataset.listboxid !== 'undefined' ? suggestionsContainer.dataset.listboxid : '';
 		const sword = event.target.value.trim();
 		const caretpos = event.target.selectionStart;
 
@@ -78,7 +79,7 @@
 		clearTimeout(debounceTimeout);
 		debounceTimeout = setTimeout(function() {
 			clearTimeout(debounceTimeout);
-			autocomplete(sword, endpoint, suggestionsContainer, caretpos);
+			autocomplete(sword, endpoint, suggestionsContainer, caretpos, listboxid);
 		}, 250);
 	}
 
@@ -134,10 +135,11 @@
 	/**
 	 * Performs autocomplete
 	 */
-	async function autocomplete(sword, endpoint, suggestionsContainer, caretpos) {
+	async function autocomplete(sword, endpoint, suggestionsContainer, caretpos, listboxid) {
 		let formData = new FormData();
 		formData.append('tx_autocompleteforindexedsearch_autocomplete[sword]', sword);
 		formData.append('tx_autocompleteforindexedsearch_autocomplete[caretpos]', caretpos);
+		formData.append('tx_autocompleteforindexedsearch_autocomplete[listboxid]', listboxid);
 
 		const response = await fetch(endpoint, {
 			method: 'POST',

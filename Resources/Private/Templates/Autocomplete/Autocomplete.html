@@ -2,9 +2,9 @@
 <f:layout name="Default" />
 <f:section name="main">
 	<f:spaceless>
-		<ul>
+		<ul role="listbox" id="{listboxid}" aria-label="{f:translate(key: 'form.searchFor', domain: 'indexed_search.messages', extensionName: 'indexedSearch')}">
 			<f:for each="{suggestions}" as="suggestion">
-				<li>{suggestion}</li>
+				<li role="option">{suggestion}</li>
 			</f:for>
 		</ul>
 	</f:spaceless>
