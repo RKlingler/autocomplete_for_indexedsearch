@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace RKL\AutocompleteForIndexedSearch\Controller;
 
 use Psr\Http\Message\ResponseInterface;
+use RKL\AutocompleteForIndexedSearch\Event\PostProcessSuggestionsEvent;
 use RKL\AutocompleteForIndexedSearch\Service\SuggestionsService;
 use RKL\AutocompleteForIndexedSearch\Utility\SearchWordsArrayUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -56,6 +57,11 @@ final class AutocompleteController extends ActionController
 		} else {
 			$suggestions = [];
 		}
+
+		$event = $this->eventDispatcher->dispatch(
+			new PostProcessSuggestionsEvent($suggestions, $this->settings)
+		);
+		$suggestions = $event->getSuggestions();
 
 		$this->view->assign('suggestions', $suggestions);
 
