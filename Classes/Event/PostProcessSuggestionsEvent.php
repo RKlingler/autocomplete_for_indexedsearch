@@ -7,6 +7,7 @@ namespace RKL\AutocompleteForIndexedSearch\Event;
 final class PostProcessSuggestionsEvent {
 	public function __construct(
 		private array $suggestions,
+		private readonly string $searchTerm,
 		private readonly array $settings,
 	) {}
 
@@ -18,6 +19,11 @@ final class PostProcessSuggestionsEvent {
 	public function setSuggestions(array $suggestions): void
 	{
 		$this->suggestions = $suggestions;
+	}
+
+	public function getSearchTerm(): string
+	{
+		return $this->searchTerm;
 	}
 
 	public function getSettings(): array

@@ -59,7 +59,7 @@ final class AutocompleteController extends ActionController
 		}
 
 		$event = $this->eventDispatcher->dispatch(
-			new PostProcessSuggestionsEvent($suggestions, $this->settings)
+			new PostProcessSuggestionsEvent($suggestions, $input, $this->settings)
 		);
 		$suggestions = $event->getSuggestions();
 
