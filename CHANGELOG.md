@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Added
 
 - Accessibility improvement: Pressing escape key will hide the suggestions
+- Added PSR-14 Event "PostProcessSuggestionsEvent" to manipulate suggestions
 
 ## [1.2.1] - 2026-04-22
 
