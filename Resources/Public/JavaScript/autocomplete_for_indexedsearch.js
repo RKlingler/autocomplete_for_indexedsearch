@@ -88,7 +88,7 @@
 	 * Handles keyboard navigation through suggestions
 	 */
 	function handleKeyDown(event) {
-		if (['ArrowUp', 'ArrowDown', 'Enter'].includes(event.key) === false) {
+		if (['ArrowUp', 'ArrowDown', 'Enter', 'Escape'].includes(event.key) === false) {
 			return;
 		}
 		const suggestionsContainer = getSuggestionsContainerForSearchField(event.target);
@@ -128,6 +128,12 @@
 				highlightedLi.click();
 				event.preventDefault();
 			}
+		}
+
+		// handle escape
+		if (event.key === 'Escape') {
+			clearSuggestionsContainer(suggestionsContainer);
+			event.preventDefault();
 		}
 	}
 
