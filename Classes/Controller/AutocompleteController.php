@@ -42,6 +42,8 @@ final class AutocompleteController extends ActionController
 		$caretpos = $this->request->hasArgument('caretpos') ? $this->request->getArgument('caretpos') : 0;
 		$caretpos = is_numeric($caretpos) ? (int) $caretpos : strlen($input);
 
+		$listboxid = $this->request->hasArgument('listboxid') ? $this->request->getArgument('listboxid') : '';
+
 		$words = explode(' ', $input);
 		$wordKey = SearchWordsArrayUtility::getCurrentWordKey($words, $caretpos);
 		if ($words[$wordKey] !== '') {
@@ -64,6 +66,7 @@ final class AutocompleteController extends ActionController
 		$suggestions = $event->getSuggestions();
 
 		$this->view->assign('suggestions', $suggestions);
+		$this->view->assign('listboxid', $listboxid);
 
 		return $this->htmlResponse();
 	}

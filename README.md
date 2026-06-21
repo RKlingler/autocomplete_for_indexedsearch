@@ -76,10 +76,11 @@ Add the ViewHelper `<rkl:autocompleteSuggestions />` to your overridden `Form.ht
 
 The `autocompleteSuggestions` ViewHelper provides the following attributes to manipulate the behavior of the autocomplete suggestions:
 
-| Attribute     | Allowed values   | Description                                                                      |
-|:--------------|:-----------------|:---------------------------------------------------------------------------------|
-| searchonclick | *bool* (`0`/`1`) | defines whether to instantly submit the search form when a suggestion is clicked |
-| minlength     | *int*            | minimum string length of the search term for autocompletion to start             |
+| Attribute     | Allowed values   | Description                                                                         |
+|:--------------|:-----------------|:------------------------------------------------------------------------------------|
+| searchonclick | *bool* (`0`/`1`) | defines whether to instantly submit the search form when a suggestion is clicked   |
+| minlength     | *int*            | minimum string length of the search term for autocompletion to start               |
+| listboxid     | *string*         | id of the listbox, for use with an aria-owns attribute of the search input field  |
 
 
 ### Optional: Add a Route Enhancer
