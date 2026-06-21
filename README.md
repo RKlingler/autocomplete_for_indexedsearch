@@ -29,12 +29,19 @@ composer require rkl/autocomplete-for-indexedsearch
 
 ## Setup
 
-### 1. Include the static TypoScript of the extension
+### 1. Include the extension configuration
+
+#### Option 1: Configuration via Site Set (requires TYPO3 v13 or later)
+
+1. Go to Site Management -> Sites
+2. Edit your site configuration
+3. In "Sets for this Site", include the "Autocomplete for Indexed Search" set.
+
+#### Option 2: Configuration via TypoScript set
 
 1. Go to Site Management -> TypoScript
 2. Open your TypoScript template and click "Edit the whole TypoScript record"
 3. In the tab "Advanced Options", include the TypoScript set: "Autocomplete for Indexed Search (autocomplete_for_indexedsearch)"
-
 
 ### 2. Override the Form.html template from indexed_search
 
