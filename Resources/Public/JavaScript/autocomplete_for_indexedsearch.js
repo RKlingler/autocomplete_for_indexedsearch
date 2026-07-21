@@ -16,6 +16,11 @@
 	searchFields.forEach(function(searchField) {
 		const suggestionsContainer = getSuggestionsContainerForSearchField(searchField);
 
+		searchField.setAttribute('aria-controls', suggestionsContainer.id);
+		searchField.setAttribute('aria-owns', suggestionsContainer.id);
+		searchField.setAttribute('aria-expanded', false);
+
+
 		// add listeners to search field
 		searchField.addEventListener('input', handleInput);
 		searchField.addEventListener('keydown', handleKeyDown);
@@ -57,7 +62,6 @@
 		const suggestionsContainer = getSuggestionsContainerForSearchField(event.target);
 		const endpoint = suggestionsContainer.dataset.endpoint;
 		const minlength = typeof suggestionsContainer.dataset.minlength !== 'undefined' ? suggestionsContainer.dataset.minlength : 2;
-		const listboxid = typeof suggestionsContainer.dataset.listboxid !== 'undefined' ? suggestionsContainer.dataset.listboxid : '';
 		const sword = event.target.value.trim();
 		const caretpos = event.target.selectionStart;
 
@@ -79,7 +83,7 @@
 		clearTimeout(debounceTimeout);
 		debounceTimeout = setTimeout(function() {
 			clearTimeout(debounceTimeout);
-			autocomplete(sword, endpoint, suggestionsContainer, caretpos, listboxid);
+			autocomplete(sword, endpoint, suggestionsContainer, caretpos);
 		}, 250);
 	}
 
@@ -105,7 +109,9 @@
 				newHighlighted = highlightedLi.previousElementSibling;
 			}
 			highlightedLi?.classList.remove('highlighted');
+			highlightedLi?.removeAttribute('aria-selected');
 			newHighlighted.classList.add('highlighted');
+			newHighlighted.setAttribute('aria-selected', true);
 			event.preventDefault();
 		}
 
@@ -117,7 +123,9 @@
 				newHighlighted = highlightedLi.nextElementSibling;
 			}
 			highlightedLi?.classList.remove('highlighted');
+			highlightedLi?.removeAttribute('aria-selected');
 			newHighlighted.classList.add('highlighted');
+			newHighlighted.setAttribute('aria-selected', true);
 			event.preventDefault();
 		}
 
@@ -141,11 +149,10 @@
 	/**
 	 * Performs autocomplete
 	 */
-	async function autocomplete(sword, endpoint, suggestionsContainer, caretpos, listboxid) {
+	async function autocomplete(sword, endpoint, suggestionsContainer, caretpos) {
 		let formData = new FormData();
 		formData.append('tx_autocompleteforindexedsearch_autocomplete[sword]', sword);
 		formData.append('tx_autocompleteforindexedsearch_autocomplete[caretpos]', caretpos);
-		formData.append('tx_autocompleteforindexedsearch_autocomplete[listboxid]', listboxid);
 
 		const response = await fetch(endpoint, {
 			method: 'POST',
@@ -163,6 +170,7 @@
 		// check if there are suggestions and update the DOM accordingly
 		let suggestions = suggestionsContainer.querySelectorAll('li');
 		if (suggestions.length > 0) {
+			document.querySelector('[aria-controls=' + suggestionsContainer.id + ']').setAttribute('aria-expanded', true);
 			suggestionsContainer.style.display = 'block';
 		} else {
 			clearSuggestionsContainer(suggestionsContainer);
@@ -191,6 +199,7 @@
 	 * Clear the suggestions and from the given container and hide it
 	 */
 	function clearSuggestionsContainer(suggestionsContainer) {
+		document.querySelector('[aria-controls=' + suggestionsContainer.id + ']').setAttribute('aria-expanded', false);
 		suggestionsContainer.innerHTML = '';
 		suggestionsContainer.style.display = 'none';
 	}

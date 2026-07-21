@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Introduced Site Set
 - Accessibility improvement: Pressing escape key will hide the suggestions
+- Accessibility improvement: Implemented role and aria attributes for search suggestions to make it usable through assistive technologies
 - Added PSR-14 Event "PostProcessSuggestionsEvent" to manipulate suggestions
 
 ## [1.2.1] - 2026-04-22

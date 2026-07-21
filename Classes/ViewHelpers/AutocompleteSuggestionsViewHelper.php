@@ -47,14 +47,6 @@ final class AutocompleteSuggestionsViewHelper extends AbstractTagBasedViewHelper
 			false,
 			2,
 		);
-
-		$this->registerArgument(
-			'listboxid',
-			'string',
-			'The id of the listbox, for use with an aria-owns attribute of the search input field.',
-			false,
-			'',
-		);
 	}
 
 
@@ -74,13 +66,14 @@ final class AutocompleteSuggestionsViewHelper extends AbstractTagBasedViewHelper
 				'Autocomplete'
 			);
 
+		$idAttribute = $this->tag->getAttribute('id') ?? 'autocompleteForIndexedSearch' . rand(0,100);
 		$classAttribute = $this->tag->getAttribute('class') ?? '';
 
+		$this->tag->addAttribute('id', $idAttribute);
 		$this->tag->addAttribute('class', trim('tx-autocomplete-for-indexedsearch ' . $classAttribute));
 		$this->tag->addAttribute('data-searchonclick', ($this->arguments['searchonclick'] ? 'true' : 'false'));
 		$this->tag->addAttribute('data-minlength', $this->arguments['minlength']);
 		$this->tag->addAttribute('data-endpoint', $endpointUrl);
-		$this->tag->addAttribute('data-listboxid', $this->arguments['listboxid']);
 
 		$this->tag->forceClosingTag(true);
 		return $this->tag->render();
