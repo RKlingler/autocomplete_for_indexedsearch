@@ -16,10 +16,12 @@
 	searchFields.forEach(function(searchField) {
 		const suggestionsContainer = getSuggestionsContainerForSearchField(searchField);
 
+		// add aria attributes to search field
+		searchField.setAttribute('aria-role', 'combobox');
+		searchField.setAttribute('aria-autocomplete', 'list');
 		searchField.setAttribute('aria-controls', suggestionsContainer.id);
 		searchField.setAttribute('aria-owns', suggestionsContainer.id);
 		searchField.setAttribute('aria-expanded', false);
-
 
 		// add listeners to search field
 		searchField.addEventListener('input', handleInput);
@@ -43,6 +45,8 @@
 
 			if (submitOnClick) {
 				searchField.closest('form').submit();
+			} else {
+				searchField.focus();
 			}
 		});
 
@@ -112,6 +116,7 @@
 			highlightedLi?.removeAttribute('aria-selected');
 			newHighlighted.classList.add('highlighted');
 			newHighlighted.setAttribute('aria-selected', true);
+			event.target.setAttribute('aria-activedescendant', newHighlighted.id);
 			event.preventDefault();
 		}
 
@@ -126,6 +131,7 @@
 			highlightedLi?.removeAttribute('aria-selected');
 			newHighlighted.classList.add('highlighted');
 			newHighlighted.setAttribute('aria-selected', true);
+			event.target.setAttribute('aria-activedescendant', newHighlighted.id);
 			event.preventDefault();
 		}
 
@@ -199,7 +205,9 @@
 	 * Clear the suggestions and from the given container and hide it
 	 */
 	function clearSuggestionsContainer(suggestionsContainer) {
-		document.querySelector('[aria-controls=' + suggestionsContainer.id + ']').setAttribute('aria-expanded', false);
+		const searchField = document.querySelector('[aria-controls=' + suggestionsContainer.id + ']');
+		searchField.setAttribute('aria-expanded', false);
+		searchField.removeAttribute('aria-activedescendant');
 		suggestionsContainer.innerHTML = '';
 		suggestionsContainer.style.display = 'none';
 	}
