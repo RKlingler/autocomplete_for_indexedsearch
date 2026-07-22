@@ -16,6 +16,13 @@
 	searchFields.forEach(function(searchField) {
 		const suggestionsContainer = getSuggestionsContainerForSearchField(searchField);
 
+		// add aria attributes to search field
+		searchField.setAttribute('aria-role', 'combobox');
+		searchField.setAttribute('aria-autocomplete', 'list');
+		searchField.setAttribute('aria-controls', suggestionsContainer.id);
+		searchField.setAttribute('aria-owns', suggestionsContainer.id);
+		searchField.setAttribute('aria-expanded', false);
+
 		// add listeners to search field
 		searchField.addEventListener('input', handleInput);
 		searchField.addEventListener('keydown', handleKeyDown);
@@ -38,6 +45,8 @@
 
 			if (submitOnClick) {
 				searchField.closest('form').submit();
+			} else {
+				searchField.focus();
 			}
 		});
 
@@ -104,7 +113,10 @@
 				newHighlighted = highlightedLi.previousElementSibling;
 			}
 			highlightedLi?.classList.remove('highlighted');
+			highlightedLi?.removeAttribute('aria-selected');
 			newHighlighted.classList.add('highlighted');
+			newHighlighted.setAttribute('aria-selected', true);
+			event.target.setAttribute('aria-activedescendant', newHighlighted.id);
 			event.preventDefault();
 		}
 
@@ -116,7 +128,10 @@
 				newHighlighted = highlightedLi.nextElementSibling;
 			}
 			highlightedLi?.classList.remove('highlighted');
+			highlightedLi?.removeAttribute('aria-selected');
 			newHighlighted.classList.add('highlighted');
+			newHighlighted.setAttribute('aria-selected', true);
+			event.target.setAttribute('aria-activedescendant', newHighlighted.id);
 			event.preventDefault();
 		}
 
@@ -161,6 +176,7 @@
 		// check if there are suggestions and update the DOM accordingly
 		let suggestions = suggestionsContainer.querySelectorAll('li');
 		if (suggestions.length > 0) {
+			document.querySelector('[aria-controls=' + suggestionsContainer.id + ']').setAttribute('aria-expanded', true);
 			suggestionsContainer.style.display = 'block';
 		} else {
 			clearSuggestionsContainer(suggestionsContainer);
@@ -189,6 +205,9 @@
 	 * Clear the suggestions and from the given container and hide it
 	 */
 	function clearSuggestionsContainer(suggestionsContainer) {
+		const searchField = document.querySelector('[aria-controls=' + suggestionsContainer.id + ']');
+		searchField.setAttribute('aria-expanded', false);
+		searchField.removeAttribute('aria-activedescendant');
 		suggestionsContainer.innerHTML = '';
 		suggestionsContainer.style.display = 'none';
 	}

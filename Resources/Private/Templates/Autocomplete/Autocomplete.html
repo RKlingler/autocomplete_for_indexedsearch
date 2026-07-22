@@ -2,9 +2,9 @@
 <f:layout name="Default" />
 <f:section name="main">
 	<f:spaceless>
-		<ul>
-			<f:for each="{suggestions}" as="suggestion">
-				<li>{suggestion}</li>
+		<ul role="listbox" aria-label="{f:translate(key: 'form.searchFor', extensionName: 'indexedSearch')}">
+			<f:for each="{suggestions}" as="suggestion" iteration="suggestionIterator">
+				<li id="autocomplete-suggestion{suggestionIterator.index}" role="option">{suggestion}</li>
 			</f:for>
 		</ul>
 	</f:spaceless>
