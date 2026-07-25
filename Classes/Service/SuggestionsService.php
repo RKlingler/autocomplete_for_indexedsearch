@@ -72,7 +72,7 @@ final class SuggestionsService
 			);
 		}
 
-		$result =  $queryBuilder->executeQuery();
+		$result = $queryBuilder->executeQuery();
 
 		// get all resulting basewords from the query unless they are equal to to the input
 		$suggestions = [];
@@ -131,6 +131,6 @@ final class SuggestionsService
 		if ($GLOBALS['TYPO3_REQUEST'] instanceof ServerRequestInterface) {
 			return $GLOBALS['TYPO3_REQUEST'];
 		}
-		throw new \RuntimeException('Could retrieve Request from $GLOBALS.');
+		throw new \RuntimeException('Could not retrieve Request from $GLOBALS.');
 	}
 }

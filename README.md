@@ -16,6 +16,7 @@ This extension adds autocomplete functionality to TYPO3 indexed search fields.
 * No further dependencies
 * Comes with limited styling for easy customizability
 * Handles inputs with multiple words
+* Accessible to keyboard users and screen readers
 
 
 ## Installation

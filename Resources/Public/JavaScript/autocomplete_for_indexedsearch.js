@@ -17,11 +17,11 @@
 		const suggestionsContainer = getSuggestionsContainerForSearchField(searchField);
 
 		// add aria attributes to search field
-		searchField.setAttribute('aria-role', 'combobox');
+		searchField.setAttribute('role', 'combobox');
 		searchField.setAttribute('aria-autocomplete', 'list');
 		searchField.setAttribute('aria-controls', suggestionsContainer.id);
 		searchField.setAttribute('aria-owns', suggestionsContainer.id);
-		searchField.setAttribute('aria-expanded', false);
+		searchField.setAttribute('aria-expanded', 'false');
 
 		// add listeners to search field
 		searchField.addEventListener('input', handleInput);
@@ -44,7 +44,7 @@
 			clearSuggestionsContainer(suggestionsContainer);
 
 			if (submitOnClick) {
-				searchField.closest('form').submit();
+				searchField.closest('form')?.requestSubmit();
 			} else {
 				searchField.focus();
 			}
@@ -65,7 +65,7 @@
 	function handleInput(event) {
 		const suggestionsContainer = getSuggestionsContainerForSearchField(event.target);
 		const endpoint = suggestionsContainer.dataset.endpoint;
-		const minlength = typeof suggestionsContainer.dataset.minlength !== 'undefined' ? suggestionsContainer.dataset.minlength : 2;
+		const minlength = typeof suggestionsContainer.dataset.minlength !== 'undefined' ? parseInt(suggestionsContainer.dataset.minlength, 10) : 2;
 		const sword = event.target.value.trim();
 		const caretpos = event.target.selectionStart;
 
@@ -115,7 +115,7 @@
 			highlightedLi?.classList.remove('highlighted');
 			highlightedLi?.removeAttribute('aria-selected');
 			newHighlighted.classList.add('highlighted');
-			newHighlighted.setAttribute('aria-selected', true);
+			newHighlighted.setAttribute('aria-selected', 'true');
 			event.target.setAttribute('aria-activedescendant', newHighlighted.id);
 			event.preventDefault();
 		}
@@ -130,7 +130,7 @@
 			highlightedLi?.classList.remove('highlighted');
 			highlightedLi?.removeAttribute('aria-selected');
 			newHighlighted.classList.add('highlighted');
-			newHighlighted.setAttribute('aria-selected', true);
+			newHighlighted.setAttribute('aria-selected', 'true');
 			event.target.setAttribute('aria-activedescendant', newHighlighted.id);
 			event.preventDefault();
 		}
@@ -176,7 +176,7 @@
 		// check if there are suggestions and update the DOM accordingly
 		let suggestions = suggestionsContainer.querySelectorAll('li');
 		if (suggestions.length > 0) {
-			document.querySelector('[aria-controls=' + suggestionsContainer.id + ']').setAttribute('aria-expanded', true);
+			document.querySelector('[aria-controls="' + suggestionsContainer.id + '"]').setAttribute('aria-expanded', 'true');
 			suggestionsContainer.style.display = 'block';
 		} else {
 			clearSuggestionsContainer(suggestionsContainer);
@@ -205,8 +205,8 @@
 	 * Clear the suggestions and from the given container and hide it
 	 */
 	function clearSuggestionsContainer(suggestionsContainer) {
-		const searchField = document.querySelector('[aria-controls=' + suggestionsContainer.id + ']');
-		searchField.setAttribute('aria-expanded', false);
+		const searchField = document.querySelector('[aria-controls="' + suggestionsContainer.id + '"]');
+		searchField.setAttribute('aria-expanded', 'false');
 		searchField.removeAttribute('aria-activedescendant');
 		suggestionsContainer.innerHTML = '';
 		suggestionsContainer.style.display = 'none';

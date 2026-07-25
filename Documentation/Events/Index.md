@@ -30,7 +30,7 @@ final readonly class AutocompleteSearchSuggestionsFilter
 			return $s !== 'foo';
 		});
 
-		$event->setSuggestions($suggestions);
+		$event->setSuggestions($filteredSuggestions);
 	}
 }
 

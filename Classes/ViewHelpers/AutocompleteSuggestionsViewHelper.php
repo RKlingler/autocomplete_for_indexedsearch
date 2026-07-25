@@ -66,7 +66,7 @@ final class AutocompleteSuggestionsViewHelper extends AbstractTagBasedViewHelper
 				'Autocomplete'
 			);
 
-		$idAttribute = $this->tag->getAttribute('id') ?? 'autocompleteForIndexedSearch' . rand(0,100);
+		$idAttribute = $this->tag->getAttribute('id') ?? 'autocompleteForIndexedSearch' . uniqid();
 		$classAttribute = $this->tag->getAttribute('class') ?? '';
 
 		$this->tag->addAttribute('id', $idAttribute);
@@ -97,6 +97,6 @@ final class AutocompleteSuggestionsViewHelper extends AbstractTagBasedViewHelper
 			);
 		}
 
-		return new Request($request->withAttribute('extbase', new ExtbaseRequestParameters()), );
+		return new Request($request->withAttribute('extbase', new ExtbaseRequestParameters()));
 	}
 }
