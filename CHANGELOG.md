@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Accessibility improvement: Implemented role and aria attributes for search suggestions to make it usable through assistive technologies
 - Added PSR-14 Event "PostProcessSuggestionsEvent" to manipulate suggestions
 
+### Fixed
+
+- Fixed an issue where no suggestions were made after going below the minimum length and then above it again
+
 ## [1.2.1] - 2026-04-22
 
 ### Changed

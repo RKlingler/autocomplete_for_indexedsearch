@@ -69,12 +69,6 @@
 		const sword = event.target.value.trim();
 		const caretpos = event.target.selectionStart;
 
-		// check if the entered sword is long enough
-		if (sword.length < minlength) {
-			clearSuggestionsContainer(suggestionsContainer);
-			return;
-		}
-
 		// check if the previous sword was resubmitted
 		if (sword == previousSword) {
 			return;
@@ -82,6 +76,12 @@
 
 		// store the current sword
 		previousSword = sword;
+
+		// check if the entered sword is long enough
+		if (sword.length < minlength) {
+			clearSuggestionsContainer(suggestionsContainer);
+			return;
+		}
 
 		// run debounced autocompletion
 		clearTimeout(debounceTimeout);
