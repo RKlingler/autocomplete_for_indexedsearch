@@ -66,8 +66,9 @@
 		const suggestionsContainer = getSuggestionsContainerForSearchField(event.target);
 		const endpoint = suggestionsContainer.dataset.endpoint;
 		const minlength = typeof suggestionsContainer.dataset.minlength !== 'undefined' ? parseInt(suggestionsContainer.dataset.minlength, 10) : 2;
-		const sword = event.target.value.trim();
-		const caretpos = event.target.selectionStart;
+		const rawInput = event.target.value;
+		const sword = rawInput.trim();
+		const caretpos = Math.max(0, event.target.selectionStart - (rawInput.length - rawInput.trimStart().length));
 
 		// check if the previous sword was resubmitted
 		if (sword == previousSword) {

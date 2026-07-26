@@ -39,13 +39,13 @@ final class AutocompleteController extends ActionController
 		}
 
 		// get the caret position
-		$caretpos = $this->request->hasArgument('caretpos') ? $this->request->getArgument('caretpos') : 0;
-		$caretpos = is_numeric($caretpos) ? (int) $caretpos : strlen($input);
+		$caretpos = $this->request->hasArgument('caretpos') ? $this->request->getArgument('caretpos') : null;
+		$caretpos = is_numeric($caretpos) ? (int) $caretpos : mb_strlen($input);
 
 		$words = explode(' ', $input);
 		$wordKey = SearchWordsArrayUtility::getCurrentWordKey($words, $caretpos);
 		if ($words[$wordKey] !== '') {
-			$maxNumResults = ctype_digit($this->settings['maxSuggestions']) ? (int)$this->settings['maxSuggestions'] : null;
+			$maxNumResults = is_numeric($this->settings['maxSuggestions']) ? (int)$this->settings['maxSuggestions'] : null;
 
 			// get autocomplete suggestions for input
 			$suggestions = $this->suggestionsService->getSuggestionsFor($words[$wordKey], $maxNumResults);

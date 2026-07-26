@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Fixed an issue where no suggestions were made after going below the minimum length and then above it again
+- Multibyte characters in the search field no longer interfere with suggestions for inputs consisting of multiple words
+- Leading whitespaces in the search field no longer interfere with suggestions for inputs consisting of multiple words
 
 ## [1.2.1] - 2026-04-22
 
