@@ -8,6 +8,6 @@ services:
     resource: '../Classes/*'
 
   # required for TYPO3 12 compatibility
-  RKL\AutocompleteForIndexedSearch\ViewHelpers\AutocompleteSuggestionsViewHelper:
+  RKL\AutocompleteForIndexedSearch\ViewHelpers\AutocompletesuggestionsViewHelper:
     public: true
     shared: false
