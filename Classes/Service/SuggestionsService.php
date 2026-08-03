@@ -22,7 +22,8 @@ final class SuggestionsService
 {
 	public function __construct(
 		private readonly ConnectionPool $connectionPool,
-		private readonly ConfigurationManagerInterface $configurationManager
+		private readonly ConfigurationManagerInterface $configurationManager,
+		private readonly Context $context
 	) {}
 
 	/**
@@ -50,9 +51,16 @@ final class SuggestionsService
 				'IP',
 				$queryBuilder->expr()->eq('IP.phash', 'IR.phash')
 			)
+			->join(
+				'IR',
+				'index_grlist',
+				'IG',
+				$queryBuilder->expr()->eq('IG.phash', 'IP.phash')
+			)
 			->where(
 				$queryBuilder->expr()->like('index_words.baseword', $queryBuilder->createNamedParameter($queryBuilder->escapeLikeWildcards($input) . '%')),
-				$queryBuilder->expr()->eq('IP.sys_language_uid', $this->getLanguageUid())
+				$queryBuilder->expr()->eq('IP.sys_language_uid', $this->getLanguageUid()),
+				$queryBuilder->expr()->eq('IG.gr_list', $queryBuilder->createNamedParameter($this->getFeUserGroupList()))
 			)
 			->groupBy('index_words.baseword')
 			->setMaxResults($maxResults);
@@ -91,8 +99,22 @@ final class SuggestionsService
 	 */
 	private function getLanguageUid(): int
 	{
-		$languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
-		return $languageAspect->getId();
+		$languageId = $this->context->getPropertyFromAspect('language', 'id');
+		is_int($languageId) ?: throw new \RuntimeException('Could not retrieve languageId from context.');
+		return $languageId;
+	}
+
+
+	/**
+	 * Retrieves a comma separated string of the current frontend users group ids from frontend user context
+	 */
+	private function getFeUserGroupList(): string
+	{
+		$feUserGroupIds = $this->context->getPropertyFromAspect('frontend.user', 'groupIds', [0, -1]);
+		is_array($feUserGroupIds) ?: throw new \RuntimeException('Could not retrieve frontend user group ids from context');
+		$feUserGroupIds = array_filter($feUserGroupIds, 'is_int');
+		$feUserGroupIds = array_map('strval', $feUserGroupIds);
+		return implode(',', $feUserGroupIds);
 	}
 
 
