@@ -132,11 +132,11 @@ final class SuggestionsService
 			// Fallback for TYPO3 12
 			$localRootLine = $GLOBALS['TSFE']->config['rootLine'];
 		}
-		$searchRootPageIdList = [(int)$localRootLine[0]['uid']];
+		$searchRootPageIdList = [(int) $localRootLine[0]['uid']];
 
 		// if the searchable rootline ids are overriden by the indexed search configuration, those will be used instead
 		$indexedSearchSettings = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS, 'indexedSearch');
-		$rootPidListFromSettings = (string)($indexedSearchSettings['rootPidList'] ?? '');
+		$rootPidListFromSettings = (string) ($indexedSearchSettings['rootPidList'] ?? '');
 		if ($rootPidListFromSettings) {
 			$searchRootPageIdList = GeneralUtility::intExplode(',', $rootPidListFromSettings);
 		}

@@ -45,7 +45,7 @@ final class AutocompleteController extends ActionController
 		$words = explode(' ', $input);
 		$wordKey = SearchWordsArrayUtility::getCurrentWordKey($words, $caretpos);
 		if ($words[$wordKey] !== '') {
-			$maxNumResults = is_numeric($this->settings['maxSuggestions']) ? (int)$this->settings['maxSuggestions'] : null;
+			$maxNumResults = is_numeric($this->settings['maxSuggestions']) ? (int) $this->settings['maxSuggestions'] : null;
 
 			// get autocomplete suggestions for input
 			$suggestions = $this->suggestionsService->getSuggestionsFor($words[$wordKey], $maxNumResults);
